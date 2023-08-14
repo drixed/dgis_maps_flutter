@@ -4,7 +4,7 @@ import 'package:pigeon/pigeon.dart';
   dartOut: 'lib/src/method_channel.g.dart',
   kotlinOptions: KotlinOptions(package: 'kz.equator.dgis_maps_flutter'),
   kotlinOut:
-      'android/src/main/kotlin/pro/flown/dgis_maps_flutter/MethodChannel.kt',
+      'android/src/main/kotlin/kz/equator/dgis_maps_flutter/MethodChannel.kt',
   swiftOut: 'ios/Classes/MethodChannel.swift',
   withId: true,
 ))
