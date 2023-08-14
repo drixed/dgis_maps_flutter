@@ -14,7 +14,7 @@ import 'types/types.dart';
 typedef MapCreatedCallback = void Function(DGisMapController controller);
 typedef CameraStateChangedCallback = void Function(DataCameraState cameraState);
 
-const String _kChannelName = 'pro.flown/dgis_maps';
+const String _kChannelName = 'kz.equator/dgis_maps';
 
 class DGisMap extends StatefulWidget {
   const DGisMap({

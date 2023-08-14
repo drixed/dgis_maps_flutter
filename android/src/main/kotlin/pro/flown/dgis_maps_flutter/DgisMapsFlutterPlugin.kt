@@ -3,7 +3,7 @@ package kz.equator.dgis_maps_flutter
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
 
-private const val VIEW_TYPE = "pro.flown/dgis_maps"
+private const val VIEW_TYPE = "kz.equator/dgis_maps"
 
 class DgisMapsFlutterPlugin : FlutterPlugin {
     override fun onAttachedToEngine(binding: FlutterPluginBinding) {
