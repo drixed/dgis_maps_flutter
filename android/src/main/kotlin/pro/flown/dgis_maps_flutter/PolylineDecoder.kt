@@ -1,4 +1,4 @@
-package pro.flown.dgis_maps_flutter
+package kz.equator.dgis_maps_flutter
 
 import ru.dgis.sdk.coordinates.GeoPoint
 

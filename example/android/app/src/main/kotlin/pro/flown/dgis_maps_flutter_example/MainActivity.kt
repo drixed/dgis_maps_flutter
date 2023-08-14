@@ -1,4 +1,4 @@
-package pro.flown.dgis_maps_flutter_example
+package kz.equator.blue.sky
 
 import io.flutter.embedding.android.FlutterActivity
 

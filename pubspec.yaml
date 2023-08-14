@@ -23,7 +23,7 @@ flutter:
   plugin:
     platforms:
       android:
-        package: pro.flown.dgis_maps_flutter
+        package: kz.equator.dgis_maps_flutter
         pluginClass: DgisMapsFlutterPlugin
       ios:
         pluginClass: DgisMapsFlutterPlugin

@@ -13,8 +13,10 @@ import 'package:flutter/services.dart';
 enum DataMapTheme {
   /// Тема, заданная на устройстве пользователя
   auto,
+
   /// Темная тема карты
   dark,
+
   /// Светлая тема карты
   light,
 }
@@ -24,10 +26,13 @@ enum DataMapTheme {
 enum DataCameraState {
   /// Камера управляется пользователем.
   busy,
+
   /// Eсть активный перелёт.
   fly,
+
   /// Камера в режиме слежения за позицией.
   followPosition,
+
   /// Камера не управляется пользователем и нет активных перелётов.
   free,
 }
@@ -37,8 +42,10 @@ enum DataCameraState {
 enum DataCameraAnimationType {
   /// Тип перелёта выбирается в зависимости от расстояния между начальной и конечной позициями
   def,
+
   /// Линейное изменение параметров позиции камеры
   linear,
+
   /// Zoom изменяется таким образом, чтобы постараться в какой-то момент перелёта отобразить начальную и конечную позиции.
   /// Позиции могут быть не отображены, если текущие ограничения (см. ICamera::zoom_restrictions()) не позволяют установить столь малый zoom.
   showBothPositions,
@@ -468,39 +475,39 @@ class _PluginHostApiCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 128:       
+      case 128:
         return DataCameraPosition.decode(readValue(buffer)!);
-      
-      case 129:       
+
+      case 129:
         return DataLatLng.decode(readValue(buffer)!);
-      
-      case 130:       
+
+      case 130:
         return DataLatLngBounds.decode(readValue(buffer)!);
-      
-      case 131:       
+
+      case 131:
         return DataMapObjectId.decode(readValue(buffer)!);
-      
-      case 132:       
+
+      case 132:
         return DataMarker.decode(readValue(buffer)!);
-      
-      case 133:       
+
+      case 133:
         return DataMarkerBitmap.decode(readValue(buffer)!);
-      
-      case 134:       
+
+      case 134:
         return DataMarkerUpdates.decode(readValue(buffer)!);
-      
-      case 135:       
+
+      case 135:
         return DataPadding.decode(readValue(buffer)!);
-      
-      case 136:       
+
+      case 136:
         return DataPolyline.decode(readValue(buffer)!);
-      
-      case 137:       
+
+      case 137:
         return DataPolylineUpdates.decode(readValue(buffer)!);
-      
-      case 138:       
+
+      case 138:
         return GeoPoint.decode(readValue(buffer)!);
-      
+
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -524,10 +531,9 @@ class PluginHostApi {
   /// Позицию камеры в текущий момент времени
   Future<DataCameraPosition> getCameraPosition() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.getCameraPosition', codec,
+        'kz.equator.PluginHostApi_$id.getCameraPosition', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -553,12 +559,18 @@ class PluginHostApi {
   /// [duration] - длительность анимации в миллисекундах,
   /// если не указана, используется нативное значение
   /// [cameraAnimationType] - тип анимации
-  Future<void> moveCamera(DataCameraPosition arg_cameraPosition, int? arg_duration, DataCameraAnimationType arg_cameraAnimationType) async {
+  Future<void> moveCamera(
+      DataCameraPosition arg_cameraPosition,
+      int? arg_duration,
+      DataCameraAnimationType arg_cameraAnimationType) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.moveCamera', codec,
+        'kz.equator.PluginHostApi_$id.moveCamera', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_cameraPosition, arg_duration, arg_cameraAnimationType.index]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[
+      arg_cameraPosition,
+      arg_duration,
+      arg_cameraAnimationType.index
+    ]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -576,12 +588,22 @@ class PluginHostApi {
   }
 
   /// Перемещение камеры к области из двух точек
-  Future<void> moveCameraToBounds(DataLatLng arg_firstPoint, DataLatLng arg_secondPoint, DataPadding arg_padding, int? arg_duration, DataCameraAnimationType arg_cameraAnimationType) async {
+  Future<void> moveCameraToBounds(
+      DataLatLng arg_firstPoint,
+      DataLatLng arg_secondPoint,
+      DataPadding arg_padding,
+      int? arg_duration,
+      DataCameraAnimationType arg_cameraAnimationType) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.moveCameraToBounds', codec,
+        'kz.equator.PluginHostApi_$id.moveCameraToBounds', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_firstPoint, arg_secondPoint, arg_padding, arg_duration, arg_cameraAnimationType.index]) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(<Object?>[
+      arg_firstPoint,
+      arg_secondPoint,
+      arg_padding,
+      arg_duration,
+      arg_cameraAnimationType.index
+    ]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -603,7 +625,7 @@ class PluginHostApi {
   /// [markerUpdates] - объект с информацией об обновлении маркеров
   Future<void> updateMarkers(DataMarkerUpdates arg_updates) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.updateMarkers', codec,
+        'kz.equator.PluginHostApi_$id.updateMarkers', codec,
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(<Object?>[arg_updates]) as List<Object?>?;
@@ -626,12 +648,13 @@ class PluginHostApi {
   /// Построение маршрута
   ///
   /// [createRoute] - объект с информацией построение маршрута
-  Future<void> createRoute(GeoPoint arg_startPoint, GeoPoint arg_endPoint) async {
+  Future<void> createRoute(
+      GeoPoint arg_startPoint, GeoPoint arg_endPoint) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.createRoute', codec,
+        'kz.equator.PluginHostApi_$id.createRoute', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(<Object?>[arg_startPoint, arg_endPoint]) as List<Object?>?;
+    final List<Object?>? replyList = await channel
+        .send(<Object?>[arg_startPoint, arg_endPoint]) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -653,7 +676,7 @@ class PluginHostApi {
   /// [polylineUpdates] - объект с информацией об обновлении полилайнов
   Future<void> updatePolylines(DataPolylineUpdates arg_updates) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.updatePolylines', codec,
+        'kz.equator.PluginHostApi_$id.updatePolylines', codec,
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(<Object?>[arg_updates]) as List<Object?>?;
@@ -679,7 +702,7 @@ class PluginHostApi {
   /// false - убирает слой с карты, если он етсь на карте
   Future<void> changeMyLocationLayerState(bool arg_isVisible) async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.changeMyLocationLayerState', codec,
+        'kz.equator.PluginHostApi_$id.changeMyLocationLayerState', codec,
         binaryMessenger: _binaryMessenger);
     final List<Object?>? replyList =
         await channel.send(<Object?>[arg_isVisible]) as List<Object?>?;
@@ -702,10 +725,9 @@ class PluginHostApi {
   /// Получение координат текущего экрана
   Future<DataLatLngBounds> getVisibleArea() async {
     final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-        'pro.flown.PluginHostApi_$id.getVisibleArea', codec,
+        'kz.equator.PluginHostApi_$id.getVisibleArea', codec,
         binaryMessenger: _binaryMessenger);
-    final List<Object?>? replyList =
-        await channel.send(null) as List<Object?>?;
+    final List<Object?>? replyList = await channel.send(null) as List<Object?>?;
     if (replyList == null) {
       throw PlatformException(
         code: 'channel-error',
@@ -743,9 +765,9 @@ class _PluginFlutterApiCodec extends StandardMessageCodec {
   @override
   Object? readValueOfType(int type, ReadBuffer buffer) {
     switch (type) {
-      case 128:       
+      case 128:
         return DataCameraStateValue.decode(readValue(buffer)!);
-      
+
       default:
         return super.readValueOfType(type, buffer);
     }
@@ -762,21 +784,23 @@ abstract class PluginFlutterApi {
   /// Коллбэк на завршение сохдания нативной карты
   void onNativeMapReady();
 
-  static void setup(PluginFlutterApi? api, {BinaryMessenger? binaryMessenger, required int id}) {
+  static void setup(PluginFlutterApi? api,
+      {BinaryMessenger? binaryMessenger, required int id}) {
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'pro.flown.PluginFlutterApi_$id.onCameraStateChanged', codec,
+          'kz.equator.PluginFlutterApi_$id.onCameraStateChanged', codec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMessageHandler(null);
       } else {
         channel.setMessageHandler((Object? message) async {
           assert(message != null,
-          'Argument for pro.flown.PluginFlutterApi_$id.onCameraStateChanged was null.');
+              'Argument for kz.equator.PluginFlutterApi_$id.onCameraStateChanged was null.');
           final List<Object?> args = (message as List<Object?>?)!;
-          final DataCameraStateValue? arg_cameraState = (args[0] as DataCameraStateValue?);
+          final DataCameraStateValue? arg_cameraState =
+              (args[0] as DataCameraStateValue?);
           assert(arg_cameraState != null,
-              'Argument for pro.flown.PluginFlutterApi_$id.onCameraStateChanged was null, expected non-null DataCameraStateValue.');
+              'Argument for kz.equator.PluginFlutterApi_$id.onCameraStateChanged was null, expected non-null DataCameraStateValue.');
           api.onCameraStateChanged(arg_cameraState!);
           return;
         });
@@ -784,7 +808,7 @@ abstract class PluginFlutterApi {
     }
     {
       final BasicMessageChannel<Object?> channel = BasicMessageChannel<Object?>(
-          'pro.flown.PluginFlutterApi_$id.onNativeMapReady', codec,
+          'kz.equator.PluginFlutterApi_$id.onNativeMapReady', codec,
           binaryMessenger: binaryMessenger);
       if (api == null) {
         channel.setMessageHandler(null);

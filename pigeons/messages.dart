@@ -2,7 +2,7 @@ import 'package:pigeon/pigeon.dart';
 
 @ConfigurePigeon(PigeonOptions(
   dartOut: 'lib/src/method_channel.g.dart',
-  kotlinOptions: KotlinOptions(package: 'pro.flown.dgis_maps_flutter'),
+  kotlinOptions: KotlinOptions(package: 'kz.equator.dgis_maps_flutter'),
   kotlinOut:
       'android/src/main/kotlin/pro/flown/dgis_maps_flutter/MethodChannel.kt',
   swiftOut: 'ios/Classes/MethodChannel.swift',

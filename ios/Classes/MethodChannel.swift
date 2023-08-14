@@ -539,7 +539,7 @@ class PluginHostApiSetup {
     ///
     /// Возвращает [DataCameraPosition]
     /// Позицию камеры в текущий момент времени
-    let getCameraPositionChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).getCameraPosition", binaryMessenger: binaryMessenger, codec: codec)
+    let getCameraPositionChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).getCameraPosition", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       getCameraPositionChannel.setMessageHandler { _, reply in
         let result = api.getCameraPosition()
@@ -552,7 +552,7 @@ class PluginHostApiSetup {
     /// [duration] - длительность анимации в миллисекундах,
     /// если не указана, используется нативное значение
     /// [cameraAnimationType] - тип анимации
-    let moveCameraChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).moveCamera", binaryMessenger: binaryMessenger, codec: codec)
+    let moveCameraChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).moveCamera", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       moveCameraChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
@@ -567,7 +567,7 @@ class PluginHostApiSetup {
       moveCameraChannel.setMessageHandler(nil)
     }
     /// Перемещение камеры к области из двух точек
-    let moveCameraToBoundsChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).moveCameraToBounds", binaryMessenger: binaryMessenger, codec: codec)
+    let moveCameraToBoundsChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).moveCameraToBounds", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       moveCameraToBoundsChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
@@ -586,7 +586,7 @@ class PluginHostApiSetup {
     /// Обновление маркеров
     ///
     /// [markerUpdates] - объект с информацией об обновлении маркеров
-    let updateMarkersChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).updateMarkers", binaryMessenger: binaryMessenger, codec: codec)
+    let updateMarkersChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).updateMarkers", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       updateMarkersChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
@@ -600,7 +600,7 @@ class PluginHostApiSetup {
     /// Построение маршрута
     ///
     /// [createRoute] - объект с информацией построение маршрута
-    let createRouteChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).createRoute", binaryMessenger: binaryMessenger, codec: codec)
+    let createRouteChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).createRoute", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       createRouteChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
@@ -615,7 +615,7 @@ class PluginHostApiSetup {
     /// Обновление полилайнов
     ///
     /// [polylineUpdates] - объект с информацией об обновлении полилайнов
-    let updatePolylinesChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).updatePolylines", binaryMessenger: binaryMessenger, codec: codec)
+    let updatePolylinesChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).updatePolylines", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       updatePolylinesChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
@@ -630,7 +630,7 @@ class PluginHostApiSetup {
     ///
     /// [isVisible] - true, добавляет слой со своей локацией, если его еще нет на карте
     /// false - убирает слой с карты, если он етсь на карте
-    let changeMyLocationLayerStateChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).changeMyLocationLayerState", binaryMessenger: binaryMessenger, codec: codec)
+    let changeMyLocationLayerStateChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).changeMyLocationLayerState", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       changeMyLocationLayerStateChannel.setMessageHandler { message, reply in
         let args = message as! [Any?]
@@ -642,7 +642,7 @@ class PluginHostApiSetup {
       changeMyLocationLayerStateChannel.setMessageHandler(nil)
     }
     /// Получение координат текущего экрана
-    let getVisibleAreaChannel = FlutterBasicMessageChannel(name: "pro.flown.PluginHostApi_\(id).getVisibleArea", binaryMessenger: binaryMessenger, codec: codec)
+    let getVisibleAreaChannel = FlutterBasicMessageChannel(name: "kz.equator.PluginHostApi_\(id).getVisibleArea", binaryMessenger: binaryMessenger, codec: codec)
     if let api = api {
       getVisibleAreaChannel.setMessageHandler { _, reply in
         let result = api.getVisibleArea()
@@ -703,14 +703,14 @@ class PluginFlutterApi {
   /// Коллбэк на изменение состояния камеры
   /// [cameraState] - индекс в перечислении [CameraState]
   func onCameraStateChanged(cameraState cameraStateArg: DataCameraStateValue, completion: @escaping () -> Void) {
-    let channel = FlutterBasicMessageChannel(name: "pro.flown.PluginFlutterApi_\(id).onCameraStateChanged", binaryMessenger: binaryMessenger, codec: codec)
+    let channel = FlutterBasicMessageChannel(name: "kz.equator.PluginFlutterApi_\(id).onCameraStateChanged", binaryMessenger: binaryMessenger, codec: codec)
     channel.sendMessage([cameraStateArg] as [Any?]) { _ in
       completion()
     }
   }
   /// Коллбэк на завршение сохдания нативной карты
   func onNativeMapReady(completion: @escaping () -> Void) {
-    let channel = FlutterBasicMessageChannel(name: "pro.flown.PluginFlutterApi_\(id).onNativeMapReady", binaryMessenger: binaryMessenger, codec: codec)
+    let channel = FlutterBasicMessageChannel(name: "kz.equator.PluginFlutterApi_\(id).onNativeMapReady", binaryMessenger: binaryMessenger, codec: codec)
     channel.sendMessage(nil) { _ in
       completion()
     }

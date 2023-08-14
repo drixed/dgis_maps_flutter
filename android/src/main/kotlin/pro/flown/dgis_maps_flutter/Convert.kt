@@ -1,4 +1,4 @@
-package pro.flown.dgis_maps_flutter
+package kz.equator.dgis_maps_flutter
 
 import android.annotation.SuppressLint
 import android.graphics.Bitmap
@@ -77,7 +77,7 @@ fun toMarker(context: Context, marker: DataMarker): Marker {
     )
 }
 
-fun toGeoPoint(geoPoint: pro.flown.dgis_maps_flutter.GeoPoint): GeoPoint {
+fun toGeoPoint(geoPoint: kz.equator.dgis_maps_flutter.GeoPoint): GeoPoint {
     return GeoPoint(
         latitude = geoPoint.latitude,
         longitude = geoPoint.longitude,
